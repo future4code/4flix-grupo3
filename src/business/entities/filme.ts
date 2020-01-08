@@ -1,4 +1,4 @@
-export class Filme {
+export class Film {
     constructor(
       private id: string,
       private title: string,
