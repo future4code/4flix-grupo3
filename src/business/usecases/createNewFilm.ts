@@ -1,7 +1,7 @@
 import {Film} from '../entities/filme'
 import {FilmGateway} from '../gateways/FilmGateway'
 
-export class CreateSeriesUseCase {
+export class CreateFilmsUseCase {
     private databaseGateway: FilmGateway;
 
     constructor(databaseGateway: FilmGateway) {
