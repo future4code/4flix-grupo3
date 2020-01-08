@@ -24,11 +24,11 @@ export class Filme {
       return this.link
     }
   
-    public getDuracao() {
+    public getDuration() {
       return this.duration
     }
 
-    public getImgCapa() {
+    public getImgCover() {
         return this.imgCover
       }
   }
