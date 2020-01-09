@@ -1,6 +1,6 @@
 import { CreateSeriesDatabaseGateway } from '../gateways/CreateSeriesDatabaseGateway';
 import { Series } from '../entities/Series';
-import { Episodie } from '../entities/Episodie';
+import { Episode } from '../entities/Episode';
 
 export class CreateSeriesUseCase {
     private databaseGateway: CreateSeriesDatabaseGateway;
@@ -11,14 +11,12 @@ export class CreateSeriesUseCase {
 
     public async execute(series: CreateSeriesInput) {
         const episodies = series.episodes.map(ep => {
-            return new Episodie(ep.title, ep.length, ep.link, ep.picture, ep.synopsis)
+            return new Episode(ep.title, ep.length, ep.link, ep.picture, ep.synopsis)
         });
-
         const newSeries = new Series(series.title, series.date, series.synopsis, series.link, episodies);
-
         const result = await this.databaseGateway.insertSeries(newSeries);
-
         return result;
+
     }
 }
 
@@ -28,10 +26,10 @@ export interface CreateSeriesInput {
     synopsis: string;
     link: string;
     picture: string;
-    episodes: EpisodieInput[]
+    episodes: EpisodeInput[]
 }
 
-interface EpisodieInput {
+interface EpisodeInput {
     title: string;
     length: string;
     link: string;
