@@ -1,8 +1,8 @@
-import express, {Request, Response} from 'express'
+import {Request, Response} from 'express'
 import {CreateFilmsUseCase, CreateFilmsInput} from "../business/usecases/createNewFilm"
 import { FilmDatabase } from './../data/FilmDatabase';
 
-const app = express()
+/*const app = express()
 app.use(express.json()) // Linha mágica (middleware)
 
 app.post('/filme', async (request: Request, response: Response) => {
@@ -28,4 +28,28 @@ app.post('/filme', async (request: Request, response: Response) => {
 }
   })
 
-export default app
+export default app*/
+export async function createFilmsEndPoint(req: Request, res: Response) {
+    try {
+        const CreateFilmsInput: CreateFilmsInput = {
+          id:req.body.id,
+          title: req.body.title,
+          dateDebut: req.body.dateDebut,
+          synopsis: req.body.synopsis,
+          duration: req.body.duration,
+          link: req.body.link,
+          imgCover: req.body.imgCover,
+        }
+
+        const createFilms = new CreateFilmsUseCase(new FilmDatabase());
+
+        const result = await createFilms.execute(CreateFilmsInput);
+
+        res.send({result, success: true, message: 'Film created succesfully'})
+      } catch (e) {
+        console.log(e)
+        res.status(500).send(e)
+      }}
+
+
+

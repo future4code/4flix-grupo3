@@ -1,5 +1,5 @@
 import { AddressInfo } from 'net'
-import app from './presentation/createFilm'
+import app from '../src/presentation/index'
 
 // Trecho do código responsável por inicializar todas as APIs
 const server = app.listen(process.env.PORT || 3000, () => {
