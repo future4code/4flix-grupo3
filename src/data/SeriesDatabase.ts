@@ -77,9 +77,12 @@ export class SeriesDatabase implements CreateSeriesDatabaseGateway {
         this.seriesEntityMapper = new SeriesEntityMapper();
         this.episodeEntityMapper = new EpisodeEntityMapper();
     }
-    async insertSeries(series: Series): Promise<boolean> {
+    async insertSeries(series: Series, episodes: Episode[]): Promise<boolean> {
         try {
             await this.connection('series').insert(this.seriesEntityMapper.entityToModel(series));
+            for (let episode of episodes) {
+                await this.connection('episode').insert(this.episodeEntityMapper.entityToModel(episode, series.getId()));
+            }
             return true;
         } catch (err) {
             console.log(err);
@@ -90,9 +93,9 @@ export class SeriesDatabase implements CreateSeriesDatabaseGateway {
         if (episodes.length > 0) {
             try {
                 for (let episode of episodes) {
-                    await this.connection('episodes').insert(this.episodeEntityMapper.entityToModel(episode, seriesId));
-                    return true;
+                    await this.connection('episode').insert(this.episodeEntityMapper.entityToModel(episode, seriesId));
                 }
+                return true;
             } catch (err) {
                 console.log(err);
                 return false;
