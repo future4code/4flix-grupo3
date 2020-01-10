@@ -1,6 +1,8 @@
 import {Request, Response} from 'express'
 import {CreateFilmsUseCase, CreateFilmsInput} from "../business/usecases/createNewFilm"
 import { FilmDatabase } from './../data/FilmDatabase';
+import { generateRandomId } from '../services/V4IdGenerator'
+
 
 /*const app = express()
 app.use(express.json()) // Linha mágica (middleware)
@@ -30,9 +32,10 @@ app.post('/filme', async (request: Request, response: Response) => {
 
 export default app*/
 export async function createFilmsEndPoint(req: Request, res: Response) {
+  const filmsID = generateRandomId();
     try {
         const CreateFilmsInput: CreateFilmsInput = {
-          id:req.body.id,
+          id: filmsID,
           title: req.body.title,
           dateDebut: req.body.dateDebut,
           synopsis: req.body.synopsis,
@@ -41,7 +44,7 @@ export async function createFilmsEndPoint(req: Request, res: Response) {
           imgCover: req.body.imgCover,
         }
 
-        const createFilms = new CreateFilmsUseCase(new FilmDatabase());
+        const createFilms = new CreateFilmsUseCase(new FilmDatabase() );
 
         const result = await createFilms.execute(CreateFilmsInput);
 
@@ -50,6 +53,5 @@ export async function createFilmsEndPoint(req: Request, res: Response) {
         console.log(e)
         res.status(400).send(e)
       }}
-
 
 
