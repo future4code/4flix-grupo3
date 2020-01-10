@@ -1,5 +1,6 @@
 export class Episode {
     constructor(
+        private id: string,
         private title: string,
         private length: string,
         private link: string,
@@ -16,7 +17,9 @@ export class Episode {
             throw new Error("Link inválido.");
         }
     }
-
+    public getId(){
+        return this.id;
+    }
     public getTitle() {
         return this.title;
     }

@@ -1,6 +1,9 @@
 import { CreateSeriesDatabaseGateway } from '../gateways/CreateSeriesDatabaseGateway';
 import { Series } from '../entities/Series';
 import { Episode } from '../entities/Episode';
+import { generateRandomId } from '../utils/generateRandomId';
+
+
 
 export class CreateSeriesUseCase {
     private databaseGateway: CreateSeriesDatabaseGateway;
@@ -11,9 +14,9 @@ export class CreateSeriesUseCase {
 
     public async execute(series: CreateSeriesInput) {
         const episodies = series.episodes.map(ep => {
-            return new Episode(ep.title, ep.length, ep.link, ep.picture, ep.synopsis)
+            return new Episode(generateRandomId(), ep.title, ep.length, ep.link, ep.picture, ep.synopsis);
         });
-        const newSeries = new Series(series.title, series.date, series.synopsis, series.link, episodies);
+        const newSeries = new Series(generateRandomId(), series.title, series.date, series.synopsis, series.link, series.picture, episodies);
         const result = await this.databaseGateway.insertSeries(newSeries);
         return result;
 

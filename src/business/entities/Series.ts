@@ -2,10 +2,12 @@ import { Episode } from "./Episode";
 
 export class Series {
     constructor(
+        private id: string,
         private title: string,
         private date: Date,
         private synopsis: string,
         private link: string,
+        private picture: string,
         private episodies: Episode[]) {
         if (title.length < 2) {
             throw new Error("Titulo inválido.");
@@ -17,7 +19,9 @@ export class Series {
             throw new Error("Link inválido.");
         }
     }
-
+    public getId() {
+        return this.id;
+    }
     public getTitle() {
         return this.title;
     }
@@ -32,5 +36,8 @@ export class Series {
     }
     public getEpisodies() {
         return this.episodies;
+    }
+    public getPicture() {
+        return this.picture;
     }
 }
