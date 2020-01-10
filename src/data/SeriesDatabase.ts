@@ -42,7 +42,7 @@ class EpisodeEntityMapper {
     }
 
 }
-class SeriesEntityMapper {
+export class SeriesEntityMapper {
     entityToModel(entity: Series): SeriesModel {
         return {
             id: entity.getId(),

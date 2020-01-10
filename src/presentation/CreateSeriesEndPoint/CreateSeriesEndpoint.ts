@@ -1,4 +1,4 @@
-import { CreateSeriesInput, CreateSeriesUseCase } from "../../business/usecases/CreateSeriesUseCase"
+import { CreateSeriesInput, CreateSeriesUseCase } from "../../business/usecases/CreateSeriesUC/CreateSeriesUseCase"
 import { Request, Response } from 'express'
 import { SeriesDatabase } from '../../data/SeriesDatabase';
 
