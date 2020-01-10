@@ -3,6 +3,7 @@ export class Film {
       private id: string,
       private title: string,
       private dateDebut: string,
+      private synopsis: string,
       private link: string,
       private duration: string,
       private imgCover: string
@@ -20,6 +21,10 @@ export class Film {
       return this.dateDebut
     }
   
+    public getSynopsis() {
+        return this.synopsis
+      }
+
     public getLink() {
       return this.link
     }
