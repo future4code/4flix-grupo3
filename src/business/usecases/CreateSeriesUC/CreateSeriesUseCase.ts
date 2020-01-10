@@ -1,7 +1,7 @@
-import { CreateSeriesDatabaseGateway } from '../gateways/CreateSeriesDatabaseGateway';
-import { Series } from '../entities/Series';
-import { Episode } from '../entities/Episode';
-import { generateRandomId } from '../utils/generateRandomId';
+import { CreateSeriesDatabaseGateway } from '../../gateways/CreateSeriesDatabaseGateway';
+import { Series } from '../../entities/Series';
+import { Episode } from '../../entities/Episode';
+import { generateRandomId } from '../../utils/generateRandomId';
 
 
 
@@ -31,8 +31,6 @@ export class CreateSeriesUseCase {
         else {
             throw new Error("Não é possível criar série sem episódios.");
         }
-
-
     }
 }
 

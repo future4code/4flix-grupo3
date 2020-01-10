@@ -1,6 +1,7 @@
 import { CreateSeriesUseCase, CreateSeriesInput } from './CreateSeriesUseCase';
-import { CreateSeriesDatabaseGateway } from '../gateways/CreateSeriesDatabaseGateway';
-import { Series } from '../entities/Series';
+import { CreateSeriesDatabaseGateway } from '../../gateways/CreateSeriesDatabaseGateway';
+import { Series } from '../../entities/Series';
+import { Episode } from '../../entities/Episode';
 
 describe("Teste do CreateSeriesUsecase",()=>{
     it("Deve retornar true na criação da série", async () => {
@@ -29,7 +30,7 @@ describe("Teste do CreateSeriesUsecase",()=>{
         }
     
         const gateway: CreateSeriesDatabaseGateway = {
-            insertSeries(series: Series) {
+            insertSeries(series: Series,episodes: Episode[]) {
                 return Promise.resolve(true);
             }
         }
@@ -51,8 +52,8 @@ describe("Teste do CreateSeriesUsecase",()=>{
         }
     
         const gateway: CreateSeriesDatabaseGateway = {
-            insertSeries(series: Series) {
-                return Promise.resolve(false);
+            insertSeries(series: Series,episodes: Episode[]) {
+                return Promise.resolve(true);
             }
         }
     
@@ -79,8 +80,8 @@ describe("Teste do CreateSeriesUsecase",()=>{
         }
     
         const gateway: CreateSeriesDatabaseGateway = {
-            insertSeries(series: Series) {
-                return Promise.resolve(false);
+            insertSeries(series: Series,episodes: Episode[]) {
+                return Promise.resolve(true);
             }
         }
     
