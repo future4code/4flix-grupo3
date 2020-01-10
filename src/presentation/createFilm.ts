@@ -48,7 +48,7 @@ export async function createFilmsEndPoint(req: Request, res: Response) {
         res.send({result, success: true, message: 'Film created succesfully'})
       } catch (e) {
         console.log(e)
-        res.status(500).send(e)
+        res.status(400).send(e)
       }}
 
 
