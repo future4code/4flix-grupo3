@@ -4,9 +4,10 @@ import { SeriesDatabase } from '../../data/SeriesDatabase';
 
 export async function createSeriesEndPoint(req: Request, res: Response) {
     try {
+        const date = Date.parse(req.body.date);
         const createSeriesInput: CreateSeriesInput = {
             title: req.body.title,
-            date: new Date(req.body.date),
+            date: new Date(date),
             synopsis: req.body.synopsis,
             link: req.body.link,
             picture: req.body.picture,
